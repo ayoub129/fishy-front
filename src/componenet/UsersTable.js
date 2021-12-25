@@ -83,20 +83,35 @@ const UsersTable = () => {
   };
   // get the users data (Profilees)
   useEffect(() => {
-    api
-      .get(`/users.php?type=users`, headers)
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((error) => {
-        console.log(`error ${error}`);
-      });
+    fetch("https://fishys.000webhostapp.com/users.php?type=users", {
+      headers: headers,
+    })
+      .then((response) => response.json())
+      .then((data) => setData(data));
+    // api
+    //   .get(`/users.php?type=users`, headers)
+    //   .then((res) => {
+    //     setData(res.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(`error ${error}`);
+    //   });
   }, []);
 
   const handleRowUpdate = (newData, oldData, resolve) => {
     // update the data using patch
-    api
-      .patch("/users.php?type=usersUpdate&id=" + newData.id, newData)
+
+    fetch(
+      "https://fishys.000webhostapp.com/users.php?type=usersUpdate&id=" +
+        newData.id,
+      {
+        method: "PATCH", // or 'PUT'
+        headers: headers,
+        body: JSON.stringify(newData),
+      }
+    )
+      // api
+      //   .patch("/users.php?type=usersUpdate&id=" + newData.id, newData)
       .then((res) => {
         const dataUpdate = [...data];
         const index = oldData.tableData.id;
@@ -116,10 +131,13 @@ const UsersTable = () => {
 
   // add new boat
   const handleRowAdd = (newData, resolve) => {
-    console.log(newData);
-
-    api
-      .post("/users.php?type=usersCreate", newData)
+    fetch("https://fishys.000webhostapp.com/users.php?type=usersCreate", {
+      method: "POST", // or 'PUT'
+      headers: headers,
+      body: JSON.stringify(newData),
+    })
+      // api
+      //   .post("/users.php?type=usersCreate", newData)
       .then((res) => {
         let dataToAdd = [...data];
         dataToAdd.push(newData);
@@ -138,8 +156,15 @@ const UsersTable = () => {
 
   // delete user
   const handleRowDelete = (oldData, resolve) => {
-    api
-      .delete(`/users.php?type=usersDelete&idtoDelete=${oldData.id}`)
+    fetch(
+      `https://fishys.000webhostapp.com/users.php?type=usersDelete&idtoDelete=${oldData.id}`,
+      {
+        method: "DELETE", // or 'PUT'
+        headers: headers,
+      }
+    )
+      // api
+      //   .delete(`/users.php?type=usersDelete&idtoDelete=${oldData.id}`)
       .then((res) => {
         const dataDelete = [...data];
         const index = oldData.tableData.id;

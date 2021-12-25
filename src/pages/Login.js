@@ -57,19 +57,24 @@ const Login = () => {
   let history = useHistory();
 
   const Logining = () => {
-    api.post(`/index.php?type=login`, data).then((res) => {
-      if (res.data) {
-        sessionStorage.setItem("loginData", JSON.stringify(res.data));
-        history.push("/boats");
-      } else {
-        sessionStorage.setItem("userData", "");
-        sessionStorage.clear();
-        setError(true);
-        setTimeout(() => {
-          setError(false);
-        }, 4000);
-      }
-    });
+    fetch("https://fishys.000webhostapp.com/index.php?type=login", {
+      method: "POST", // or 'PUT'
+      body: JSON.stringify(data),
+    })
+      // api.post(`/index.php?type=login`, data)
+      .then((res) => {
+        if (res.data) {
+          sessionStorage.setItem("loginData", JSON.stringify(res.data));
+          history.push("/boats");
+        } else {
+          sessionStorage.setItem("userData", "");
+          sessionStorage.clear();
+          setError(true);
+          setTimeout(() => {
+            setError(false);
+          }, 4000);
+        }
+      });
   };
 
   return (
