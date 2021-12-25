@@ -72,7 +72,7 @@ const tableIcons = {
 const SalesTable = () => {
   // the api end point
   const api = axios.create({
-    baseURL: `http://localhost/fish/api2/`,
+    baseURL: `https://fishys.000webhostapp.com/`,
   });
   const CustomDatePicker = (props) => {
     const [date, setDate] = useState(null);

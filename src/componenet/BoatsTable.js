@@ -99,7 +99,7 @@ const CustomDatePicker = (props) => {
 const BoatsTable = () => {
   // the api end point
   const api = axios.create({
-    baseURL: `http://localhost/fish/api2/`,
+    baseURL: `https://fishys.000webhostapp.com/`,
   });
 
   // the columnes

@@ -129,7 +129,7 @@ const Customers = () => {
     fd.append("xlsx", excel);
     axios({
       method: "post",
-      url: "http://localhost/fish/api2/upload.php?table=customers",
+      url: "https://fishys.000webhostapp.com/upload.php?table=customers",
       // url: "http://localhost/fish/api2/upload.php?table=customers",
       data: fd,
       headers: { "Content-Type": "multipart/form-data" },

@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProfileData() {
   const api = axios.create({
-    baseURL: `http://localhost/fish/api2/`,
+    baseURL: `https://fishys.000webhostapp.com/`,
   });
 
   const user = JSON.parse(sessionStorage.getItem("loginData"));
